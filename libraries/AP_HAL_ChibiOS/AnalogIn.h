@@ -18,7 +18,7 @@
 #pragma once
 
 #include "AP_HAL_ChibiOS.h"
-
+#include "GCS_MAVLink/GCS.h"
 #define ANALOG_MAX_CHANNELS 16
 
 // number of samples on each channel to gather on each DMA callback

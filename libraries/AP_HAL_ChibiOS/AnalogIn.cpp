@@ -118,6 +118,7 @@ float AnalogSource::_pin_scaler(void)
     for (uint8_t i=0; i<ADC_GRP1_NUM_CHANNELS; i++) {
         if (AnalogIn::pin_config[i].channel == _pin) {
             scaling = AnalogIn::pin_config[i].scaling;
+            
             break;
         }
     }

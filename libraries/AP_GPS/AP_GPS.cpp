@@ -1259,6 +1259,10 @@ void AP_GPS::send_mavlink_gps_raw(mavlink_channel_t chan)
     horizontal_accuracy(0, hacc);
     vertical_accuracy(0, vacc);
     speed_accuracy(0, sacc);
+    GCS_SEND_TEXT(MAV_SEVERITY_INFO,"lat: %d\n" ,int(loc.lat));
+    GCS_SEND_TEXT(MAV_SEVERITY_INFO,"lng: %d\n" ,int(loc.lng));
+    GCS_SEND_TEXT(MAV_SEVERITY_INFO,"hdop(0): %d\n" ,get_hdop(0));
+    GCS_SEND_TEXT(MAV_SEVERITY_INFO,"vdop(0): %d\n" ,get_vdop(0));
     mavlink_msg_gps_raw_int_send(
         chan,
         last_fix_time_ms(0)*(uint64_t)1000,

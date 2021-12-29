@@ -113,7 +113,7 @@ void AR_WPNav::update(float dt)
         _desired_turn_rate_rads = 0.0f;
         return;
     }
-
+    
     // if no recent calls initialise desired_speed_limited to current speed
     if (!is_active()) {
         _desired_speed_limited = speed;

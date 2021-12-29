@@ -421,7 +421,6 @@ void AP_AHRS::update_DCM()
 {
     dcm.update();
     dcm.get_results(dcm_estimates);
-
     // we always update the vehicle's canonical roll/pitch/yaw from
     // DCM.  In normal operation this will usually be over-written by
     // an EKF or external AHRS.  This is long-held behaviour, but this
