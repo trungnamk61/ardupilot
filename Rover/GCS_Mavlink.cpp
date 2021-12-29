@@ -600,7 +600,6 @@ bool GCS_MAVLINK_Rover::set_home(const Location& loc, bool _lock) {
 MAV_RESULT GCS_MAVLINK_Rover::handle_command_int_packet(const mavlink_command_int_t &packet)
 {
     switch (packet.command) {
-
     case MAV_CMD_DO_CHANGE_SPEED:
         // param1 : unused
         // param2 : new speed in m/s
@@ -625,7 +624,22 @@ MAV_RESULT GCS_MAVLINK_Rover::handle_command_int_packet(const mavlink_command_in
 MAV_RESULT GCS_MAVLINK_Rover::handle_command_long_packet(const mavlink_command_long_t &packet)
 {
     switch (packet.command) {
-
+    case MAV_CMD_DO_SET_SERVO:
+        if(rover.get_mode() == Mode::Number::REMOTE_GCS)
+        {
+            gcs().send_text(MAV_SEVERITY_INFO,"MAV_CMD_DO_SET_SERVO");
+            if(packet.param1 == 1)
+            {
+                rover.mode_remote_GCS.set_throttle(packet.param1);
+            }
+            if(packet.param1 == 2)
+            {
+                rover.mode_remote_GCS.set_steering(packet.param2);
+            }
+            
+            return MAV_RESULT_ACCEPTED;
+        }
+        return MAV_RESULT_FAILED;
     case MAV_CMD_NAV_RETURN_TO_LAUNCH:
         if (rover.set_mode(rover.mode_rtl, ModeReason::GCS_COMMAND)) {
             return MAV_RESULT_ACCEPTED;

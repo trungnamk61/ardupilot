@@ -140,7 +140,9 @@ void Rover::init_ardupilot()
     if (is_boat()) {
         rover.g2.mis_done_behave.set_default(ModeAuto::Mis_Done_Behave::MIS_DONE_BEHAVE_LOITER);
     }
-
+    //initialise IR Sensors
+    g2.ir_sensor.init();
+    
     // flag that initialisation has completed
     initialised = true;
 }

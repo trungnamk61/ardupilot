@@ -216,6 +216,19 @@ const AP_Param::Info Rover::var_info[] = {
     // @User: Standard
     GSCALAR(mode6,           "MODE6",         Mode::Number::MANUAL),
 
+    // @Param: MODE17
+    // @DisplayName: Mode17
+    // @Description: Driving mode for switch position 17 (1750 to 2049)
+    // @CopyValuesFrom: MODE1
+    // @User: Standard
+    GSCALAR(mode17,           "MODE17",         Mode::Number::MANUAL),
+
+    // @Param: MODE18
+    // @DisplayName: Mode18
+    // @Description: Driving mode for switch position 18 (1750 to 2049)
+    // @CopyValuesFrom: MODE1
+    // @User: Standard
+    GSCALAR(mode18,           "MODE18",         Mode::Number::MANUAL),
     // variables not in the g class which contain EEPROM saved variables
 
     // @Group: COMPASS_

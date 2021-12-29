@@ -30,7 +30,9 @@ public:
         RTL          = 11,
         SMART_RTL    = 12,
         GUIDED       = 15,
-        INITIALISING = 16
+        INITIALISING = 16,
+        REMOTE_GCS   = 17,
+        LINE_FOLLOWER = 18
     };
 
     // Constructor
@@ -688,6 +690,35 @@ protected:
 
     float _desired_speed;       // desired speed in m/s
 };
+class ModeLineFollower : public Mode
+{
+public:
+    uint32_t mode_number() const override { return LINE_FOLLOWER; }
+    const char *name4() const override { return "LFLW";}
+
+    void update() override;
+
+};
+class ModeRemoteGCS : public Mode
+{
+public:
+    uint32_t mode_number() const override { return REMOTE_GCS; }
+    const char *name4() const override { return "RGCS"; }
+
+    void update() override;
+    void set_throttle(float _desired_throttle);
+    void set_steering(float _desired_steering);
+private:
+    struct controll_type
+    {
+        float desired_throttle;
+        float desired_steering;
+    };
+    controll_type cmd;
+/*protected:
+    bool _enter() override;
+    void _exit() override;*/
+};
 
 class ModeSimple : public Mode
 {
@@ -699,6 +730,8 @@ public:
     // methods that affect movement of the vehicle in this mode
     void update() override;
     void init_heading();
+
+    bool is_autopilot_mode() const override { return true; }
 
     // simple type enum used for SIMPLE_TYPE parameter
     enum simple_type {

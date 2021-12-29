@@ -7,7 +7,7 @@
 #include "AP_Gripper/AP_Gripper.h"
 #include "AP_Rally.h"
 #include "AP_Torqeedo/AP_Torqeedo.h"
-
+#include "AR_IR/AR_IR_Sensor.h"
 // Global parameter class.
 //
 class Parameters {
@@ -171,6 +171,8 @@ public:
         k_param_mode4,
         k_param_mode5,
         k_param_mode6,
+        k_param_mode17,
+        k_param_mode18,
         k_param_aux_channel_old,
 
         //
@@ -266,7 +268,8 @@ public:
     AP_Int8     mode4;
     AP_Int8     mode5;
     AP_Int8     mode6;
-
+    AP_Int8     mode17;
+    AP_Int8     mode18;
     Parameters() {}
 };
 
@@ -325,7 +328,7 @@ public:
 
     // frame class for vehicle
     AP_Int8 frame_class;
-
+    AR_IR ir_sensor;
     // fence library
     AC_Fence fence;
 
